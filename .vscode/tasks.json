@@ -1,0 +1,55 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build chess",
+            "type": "shell",
+            "command": "E:\\VScode\\zztoolsForVscode\\winlibs\\mingw64\\bin\\g++.exe",
+            "args": [
+                "-Wall",
+                "-Wextra",
+                "-g3",
+                "-static",
+                "-finput-charset=utf-8",
+                "-fexec-charset=gbk",
+                "-I",
+                "ChinessChess/include",
+                "-I",
+                "network",
+                "ChinessChess/src/main.cpp",
+                "ChinessChess/src/chess_engine.cpp",
+                "ChinessChess/src/draw_board.cpp",
+                "ChinessChess/src/mouse_input.cpp",
+                "ChinessChess/src/game_control.cpp",
+                "ChinessChess/src/menu.cpp",
+                "network/network.cpp",
+                "-o",
+                "ChinessChess/output/chess.exe",
+                "-mwindows",
+                "-leasyx",
+                "-lws2_32",
+                "-lgdi32",
+                "-lole32",
+                "-lwinmm"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
