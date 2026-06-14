@@ -226,23 +226,27 @@ void draw_board(GameState &state, bool is_network, bool is_host)
         // 悔棋请求弹窗 // OPTIMIZED: 对方请求悔棋时显示同意/拒绝按钮
         if (state.undo_req_pending)
         {
+            // 主机在上方 (默认)，客机在下方，间距对称
+            int gap = UI_UNDO_Y - (UI_UNDO_REQ_Y + UI_REQ_BTN_H + 30);
+            int req_y = is_host ? UI_UNDO_REQ_Y : UI_UNDO_Y + UI_BUTTON_H + gap + 5;
+
             setfillcolor(RGB(240, 220, 180));
             setlinecolor(BLACK);
-            fillrectangle(UI_BTN_X - 5, UI_UNDO_REQ_Y - 5, UI_BTN_X + UI_BUTTON_W + 5, UI_UNDO_REQ_Y + UI_REQ_BTN_H + 30);
+            fillrectangle(UI_BTN_X - 5, req_y - 5, UI_BTN_X + UI_BUTTON_W + 5, req_y + UI_REQ_BTN_H + 30);
             settextstyle(18, 0, "楷体");
             setbkmode(TRANSPARENT);
             settextcolor(BLACK);
-            outtextxy(UI_BTN_X + 15, UI_UNDO_REQ_Y, "对方请求悔棋");
+            outtextxy(UI_BTN_X + 15, req_y, "对方请求悔棋");
             // 同意
             setfillcolor(RGB(100, 180, 100));
-            fillrectangle(UI_ACCEPT_X, UI_UNDO_REQ_Y + 22, UI_ACCEPT_X + UI_REQ_BTN_W, UI_UNDO_REQ_Y + 22 + UI_REQ_BTN_H);
+            fillrectangle(UI_ACCEPT_X, req_y + 22, UI_ACCEPT_X + UI_REQ_BTN_W, req_y + 22 + UI_REQ_BTN_H);
             settextcolor(WHITE);
-            outtextxy(UI_ACCEPT_X + 12, UI_UNDO_REQ_Y + 25, "同意");
+            outtextxy(UI_ACCEPT_X + 12, req_y + 25, "同意");
             // 拒绝
             setfillcolor(RGB(200, 100, 100));
-            fillrectangle(UI_REJECT_X, UI_UNDO_REQ_Y + 22, UI_REJECT_X + UI_REQ_BTN_W, UI_UNDO_REQ_Y + 22 + UI_REQ_BTN_H);
+            fillrectangle(UI_REJECT_X, req_y + 22, UI_REJECT_X + UI_REQ_BTN_W, req_y + 22 + UI_REQ_BTN_H);
             settextcolor(WHITE);
-            outtextxy(UI_REJECT_X + 12, UI_UNDO_REQ_Y + 25, "拒绝");
+            outtextxy(UI_REJECT_X + 12, req_y + 25, "拒绝");
         }
     }
     else

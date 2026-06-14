@@ -181,7 +181,7 @@ int main()
                         check_over(state);
                 }
                 // OPTIMIZED: 桌面走棋仅在本地回合且未等待悔棋响应时
-                else if (is_my_turn(menu_choice, state.current_side) && !net_get_state().waiting_undo)
+                else if (is_my_turn(menu_choice, state.current_side) && !net_get_state().waiting_undo && !state.undo_req_pending)
                 {
                     Move moves;
                     if (handle_mouse_click(state, m.x, m.y, moves))

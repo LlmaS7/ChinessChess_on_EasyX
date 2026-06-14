@@ -34,20 +34,15 @@ static void wait_click(int &mx, int &my)
 {
     while (true)
     {
-        if (MouseHit())
+        ExMessage em;
+        while (peekmessage(&em, EX_MOUSE | EX_WINDOW))
         {
-            MOUSEMSG m = GetMouseMsg();
-            if (m.uMsg == WM_LBUTTONDOWN)
+            if (em.message == WM_LBUTTONDOWN)
             {
-                mx = m.x;
-                my = m.y;
+                mx = em.x;
+                my = em.y;
                 return;
             }
-        }
-        // 允许关闭窗口
-        ExMessage em;
-        while (peekmessage(&em, EX_WINDOW))
-        {
             if (em.message == WM_CLOSE)
             {
                 mx = my = -1;
@@ -104,7 +99,7 @@ int show_start_menu()
             // ---------- 联机子菜单 ----------
             while (true)
             {
-                setbkcolor(RGB(200, 170, 120));
+                setbkcolor(RGB(220, 180, 130));
                 cleardevice();
 
                 settextstyle(36, 0, "楷体");
@@ -131,7 +126,7 @@ int show_start_menu()
                 else if (in_btn(mx, my, BTN_X, 340, BTN_W, BTN_H))
                 {
                     // 输入 IP
-                    InputBox(g_connect_ip, 16, "请输入主机 IP 地址", "连接主机", "192.168.");
+                    InputBox(g_connect_ip, 16, "请输入主机 IP 地址", "连接主机");
                     closegraph();
                     return MENU_CLIENT;
                 }

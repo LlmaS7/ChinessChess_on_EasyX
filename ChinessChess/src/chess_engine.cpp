@@ -597,8 +597,8 @@ int check_over(GameState &state)
 
 void undo_to_turn(GameState &state, int target_color)
 {
-    // 当前回合方已经是 target_color 时退1步，否则退2步
-    if (state.current_side == target_color)
+    // 当前回合方已经是 target_color 时退2步，否则退1步
+    if (state.current_side != target_color)
         undo_move(state);
     else
     {

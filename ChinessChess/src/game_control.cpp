@@ -7,7 +7,9 @@ bool handle_control_click(GameState &state, int px, int py, bool is_network, boo
     // 联机模式：悔棋请求弹窗按钮（接受/拒绝）在任何位置都可触发
     if (is_network && state.undo_req_pending)
     {
-        if (py >= UI_UNDO_REQ_Y + 22 && py <= UI_UNDO_REQ_Y + 22 + UI_REQ_BTN_H)
+        int gap = UI_UNDO_Y - (UI_UNDO_REQ_Y + UI_REQ_BTN_H + 30);
+        int req_y = is_host ? UI_UNDO_REQ_Y : UI_UNDO_Y + UI_BUTTON_H + gap + 5;
+        if (py >= req_y + 22 && py <= req_y + 22 + UI_REQ_BTN_H)
         {
             // 同意
             if (px >= UI_ACCEPT_X && px <= UI_ACCEPT_X + UI_REQ_BTN_W)
@@ -26,6 +28,7 @@ bool handle_control_click(GameState &state, int px, int py, bool is_network, boo
                 return true;
             }
         }
+        return true; // 弹窗期间吞掉所有其他点击
     }
 
     if (px < UI_BTN_X || px > UI_BTN_X + UI_BUTTON_W)
