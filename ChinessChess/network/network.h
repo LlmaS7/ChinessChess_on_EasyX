@@ -1,5 +1,5 @@
 #pragma once
-#include "../ChinessChess/include/chess_def.h"
+#include "../include/chess_def.h"
 #include <string>
 
 //  网络消息协议
