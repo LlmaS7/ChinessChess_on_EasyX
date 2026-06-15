@@ -157,6 +157,8 @@ void draw_board(GameState &state, bool is_network, bool is_host)
                 setlinecolor(RGB(220, 50, 50));
                 setlinestyle(PS_SOLID, 2);
                 circle(toX(m.to_x), toY(m.to_y), 26);
+                // 恢复设置，避免影响后续绿点
+                setlinecolor(RGB(30, 140, 60));
                 setlinestyle(PS_SOLID, 1);
             }
             else
