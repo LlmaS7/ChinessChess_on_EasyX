@@ -20,7 +20,7 @@
                 "ChinessChess/src/chess_engine.cpp",
                 "ChinessChess/src/draw_board.cpp",
                 "ChinessChess/src/mouse_input.cpp",
-                "ChinessChess/src/game_control.cpp",
+                "ChinessChess/src/game_manager.cpp",
                 "ChinessChess/src/menu.cpp",
                 "ChinessChess/network/network.cpp",
                 "-o",

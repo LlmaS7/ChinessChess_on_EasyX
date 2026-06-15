@@ -250,9 +250,10 @@ bool net_recv_msg(NetMessage &msg) // 阻塞(实际受SO_RCVTIMEO控制超时)
             else
             {
                 int err = WSAGetLastError();
-                if (err != WSAETIMEDOUT) // OPTIMIZED: 超时是正常情况，不打印错误
+                if (err != WSAETIMEDOUT)
                     printf("[net] recv() 包头失效：%d\n", err);
             }
+            g_net.connected = false;
             return false;
         }
         total_hdr += ret;
@@ -282,6 +283,7 @@ bool net_recv_msg(NetMessage &msg) // 阻塞(实际受SO_RCVTIMEO控制超时)
                 int err = WSAGetLastError();
                 if (err != WSAETIMEDOUT)
                     printf("[net] recv() 数据失效：%d\n", err);
+                g_net.connected = false;
                 return false;
             }
             total += ret;
