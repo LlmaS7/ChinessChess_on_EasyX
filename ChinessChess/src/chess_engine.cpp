@@ -279,7 +279,7 @@ bool apply_move(GameState &state, int fX, int fY, int tX, int tY)
     default:
         return false;
     }
-
+    
     // 需保证走后不能自己被将, 模拟走棋进行检查
     ChessPiece saved_piece = piece;
     ChessPiece saved_target = target;

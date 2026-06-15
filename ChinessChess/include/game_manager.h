@@ -2,7 +2,7 @@
 #include "game_state.h"
 #include "menu.h"
 
-// 判断当前回合是否轮到本地玩家操作
+// 判断当前回合是否轮到本地玩家操作 (单机总是true)
 bool is_my_turn(int menu_choice, int current_side);
 // 处理右侧游戏控制按钮点击（认输/悔棋/悔棋响应），返回 true 表示已处理
 bool handle_control_click(GameState &state, int px, int py, bool is_network, bool is_host);
